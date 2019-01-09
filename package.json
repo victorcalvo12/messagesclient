@@ -1,0 +1,20 @@
+{
+  "name": "messages",
+  "version": "0.0.1",
+  "description": "A desktop wrapper for the Google Messages app.",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "Google",
+    "Messages",
+    "Desktop",
+    "SMS"
+  ],
+  "author": "Victor Calvo",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^4.0.0"
+  }
+}
