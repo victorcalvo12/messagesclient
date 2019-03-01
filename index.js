@@ -4,7 +4,7 @@ const appConfig = require('electron-settings');
 function windowStateKeeper(windowName) {
     let window, windowState;
 
-    //Applies saved window state to window on startup if one exists.
+    //Applies saved window state to window on startup if one exists else creates one.
     function setBounds() {
         if (appConfig.has(`windowState.${windowName}`)) {
             windowState = appConfig.get(`windowState.${windowName}`);
@@ -17,7 +17,7 @@ function windowStateKeeper(windowName) {
             };
         }
     }
-    //Saves application bounds so that the app opens to its previous dimensions.
+    //Saves window state(height, width, position) so that the app opens to its previous dimensions.
     function saveState() {
         if (!windowState.isMaximized) {
             windowState = window.getBounds();
@@ -25,7 +25,7 @@ function windowStateKeeper(windowName) {
         windowState.isMaximized = window.isMaximized();
         appConfig.set(`windowState.${windowName}`, windowState);
     }
-
+    //Creates event handlers for all user window adjustments
     function track(win) {
         window = win;
         ['resize', 'move', 'close'].forEach(event => {
@@ -56,31 +56,33 @@ function createWindow() {
         height: mainWindowStateKeeper.height
     }
     
+    //Primary app window
     let window = new BrowserWindow(windowOptions);
 
     mainWindowStateKeeper.track(window);
-
-    //window.webContents.openDevTools()
 
     window.on('closed', () => {
         window = null
     })
 
+    //View that hosts messages web app
     let view = new BrowserView({
         webPreferences: {
             nodeIntegration: false
         }
     });
     view.setAutoResize({width:true, height: true});
-
     window.setBrowserView(view);
     view.setBounds({
         x: 0, y: 0,
-        width: windowOptions.width, height: windowOptions.height
+        width: windowOptions.width, height: windowOptions.height - 39
     })
+    //Load in messages app
     view.webContents.loadURL('https://messages.android.com');
-    
-    //view.webContents.openDevTools()
 }
-
+//Render window when app is ready
 app.on('ready', createWindow);
+//Terminates all processes if all windows are closed.
+app.on('window-all-closed', () => {
+    app.quit()
+});
