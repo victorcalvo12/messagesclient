@@ -4,7 +4,9 @@
   "description": "A desktop wrapper for the Google Messages app.",
   "main": "index.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "keywords": [
     "Google",
@@ -14,8 +16,15 @@
   ],
   "author": "Victor Calvo",
   "license": "ISC",
+  "build": {
+    "appId": "com.victorcalvo.messages",
+    "mac": {
+      "category": "public.app-category.productivity"
+    }
+  },
   "devDependencies": {
-    "electron": "^4.0.0"
+    "electron": "^4.0.0",
+    "electron-builder": "^20.38.5"
   },
   "dependencies": {
     "electron-settings": "^3.2.0"
