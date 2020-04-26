@@ -1,33 +1,32 @@
 {
-  "name": "messages",
-  "version": "0.0.1",
-  "description": "A desktop wrapper for the Google Messages app.",
-  "main": "index.js",
-  "scripts": {
-    "start": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
-  },
-  "keywords": [
-    "Google",
-    "Messages",
-    "Desktop",
-    "SMS"
-  ],
-  "author": "Victor Calvo",
-  "license": "ISC",
-  "build": {
-    "appId": "com.victorcalvo.messages",
-    "mac": {
-      "category": "public.app-category.productivity"
-    }
-  },
-  "devDependencies": {
-    "electron": "^4.0.0",
-    "electron-packager": "^13.1.0"
-  },
-  "dependencies": {
-    "electron-settings": "^3.2.0",
-    "electron-squirrel-startup": "^1.0.0"
-  }
+	"name": "messages",
+	"version": "0.0.2",
+	"description": "A desktop wrapper for the Google Messages app.",
+	"main": "index.js",
+	"scripts": {
+		"start": "electron .",
+		"build": "electron-packager ./ --icon=icon"
+	},
+	"keywords": [
+		"Google",
+		"Messages",
+		"Desktop",
+		"SMS"
+	],
+	"author": "Victor Calvo",
+	"license": "ISC",
+	"build": {
+		"appId": "com.victorcalvo.messages",
+		"mac": {
+			"category": "public.app-category.productivity"
+		}
+	},
+	"devDependencies": {
+		"electron": "^8.2.3",
+		"electron-packager": "^14.2.1"
+	},
+	"dependencies": {
+		"electron-settings": "^3.2.0",
+		"electron-squirrel-startup": "^1.0.0"
+	}
 }

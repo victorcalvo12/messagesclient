@@ -80,6 +80,11 @@ function createWindow() {
     //Load in messages app
     view.webContents.loadURL('https://messages.android.com');
 }
+
+app.setLoginItemSettings({
+	openAtLogin: true
+});
+
 //Render window when app is ready
 app.on('ready', createWindow);
 //Terminates all processes if all windows are closed.
